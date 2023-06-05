@@ -52,3 +52,10 @@ FROM artists
 JOIN artist_skills ON artists.id = artist_skills.artist_id
 JOIN skills ON artist_skills.skill_id = skills.id
 GROUP BY artists.id;
+
+
+Output:
+
+  id	name	skills
+  1	Artist 1	Acting,Singing
+  2	Artist 2	Acting,Dancing
