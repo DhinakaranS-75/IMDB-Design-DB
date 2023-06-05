@@ -52,3 +52,10 @@ FROM movies
 JOIN reviews ON movies.id = reviews.movie_id
 JOIN users ON reviews.user_id = users.id
 WHERE movies.id = 1;
+
+
+Output:
+
+    id	title	release_year	rating	comment	user_name
+    1	Movie 1	2022	4.5	Great movie!	User 1
+    1	Movie 1	2022	3.8	Enjoyed it.	User 2
