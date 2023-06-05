@@ -1,0 +1,55 @@
+CREATE TABLE films (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  release_year INT
+);
+
+CREATE TABLE artists (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE performances (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  film_id INT,
+  artist_id INT,
+  role VARCHAR(255) NOT NULL,
+  FOREIGN KEY (film_id) REFERENCES films(id),
+  FOREIGN KEY (artist_id) REFERENCES artists(id)
+);
+
+
+
+INSERT INTO films (title, release_year)
+VALUES ('Film 1', 2022);
+
+INSERT INTO films (title, release_year)
+VALUES ('Film 2', 2023);
+
+
+INSERT INTO artists (name)
+VALUES ('Artist 1');
+
+INSERT INTO artists (name)
+VALUES ('Artist 2');
+
+
+INSERT INTO performances (film_id, artist_id, role)
+VALUES (1, 1, 'Lead Actor');
+
+INSERT INTO performances (film_id, artist_id, role)
+VALUES (1, 2, 'Supporting Actor');
+
+INSERT INTO performances (film_id, artist_id, role)
+VALUES (2, 1, 'Lead Actor');
+
+INSERT INTO performances (film_id, artist_id, role)
+VALUES (2, 2, 'Lead Actress');
+
+
+
+SELECT films.id, films.title, films.release_year, artists.name AS artist_name, performances.role
+FROM films
+JOIN performances ON films.id = performances.film_id
+JOIN artists ON performances.artist_id = artists.id
+WHERE films.id = 1;

@@ -1,0 +1,36 @@
+CREATE TABLE movies (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  release_year INT,
+  genre VARCHAR(255)
+);
+
+CREATE TABLE media (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  movie_id INT,
+  media_type ENUM('video', 'image'),
+  media_url VARCHAR(255),
+  FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
+
+
+
+
+INSERT INTO movies (title, release_year, genre)
+VALUES ('Movie Title', 2022, 'Action');
+
+
+INSERT INTO media (movie_id, media_type, media_url)
+VALUES (1, 'video', 'https://www.imdb.com/video/vi829277209/');
+
+
+INSERT INTO media (movie_id, media_type, media_url)
+VALUES (1, 'image', 'https://www.imdb.com/title/tt9362722/');
+
+
+
+
+SELECT movies.id, movies.title, movies.release_year, movies.genre, media.media_type, media.media_url
+FROM movies
+JOIN media ON movies.id = media.movie_id
+WHERE movies.id = 1;

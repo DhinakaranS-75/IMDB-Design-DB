@@ -1,0 +1,54 @@
+CREATE TABLE artists (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE skills (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE artist_skills (
+  artist_id INT,
+  skill_id INT,
+  PRIMARY KEY (artist_id, skill_id),
+  FOREIGN KEY (artist_id) REFERENCES artists(id),
+  FOREIGN KEY (skill_id) REFERENCES skills(id)
+);
+
+
+INSERT INTO artists (name)
+VALUES ('Artist 1');
+
+INSERT INTO artists (name)
+VALUES ('Artist 2');
+
+-- Insert skills
+INSERT INTO skills (name)
+VALUES ('Acting');
+
+INSERT INTO skills (name)
+VALUES ('Singing');
+
+INSERT INTO skills (name)
+VALUES ('Dancing');
+
+
+INSERT INTO artist_skills (artist_id, skill_id)
+VALUES (1, 1); 
+INSERT INTO artist_skills (artist_id, skill_id)
+VALUES (1, 2); 
+
+INSERT INTO artist_skills (artist_id, skill_id)
+VALUES (2, 1); 
+
+INSERT INTO artist_skills (artist_id, skill_id)
+VALUES (2, 3); 
+
+
+
+SELECT artists.id, artists.name, GROUP_CONCAT(skills.name) AS skills
+FROM artists
+JOIN artist_skills ON artists.id = artist_skills.artist_id
+JOIN skills ON artist_skills.skill_id = skills.id
+GROUP BY artists.id;

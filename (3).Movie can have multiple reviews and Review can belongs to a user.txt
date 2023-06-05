@@ -1,0 +1,54 @@
+CREATE TABLE movies (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  release_year INT
+);
+
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reviews (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  movie_id INT,
+  user_id INT,
+  rating DECIMAL(3, 1),
+  comment TEXT,
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+INSERT INTO movies (title, release_year)
+VALUES ('Movie 1', 2022);
+
+INSERT INTO movies (title, release_year)
+VALUES ('Movie 2', 2023);
+
+-- Insert users
+INSERT INTO users (name)
+VALUES ('User 1');
+
+INSERT INTO users (name)
+VALUES ('User 2');
+
+
+INSERT INTO reviews (movie_id, user_id, rating, comment)
+VALUES (1, 1, 4.5, 'Great movie!');
+
+INSERT INTO reviews (movie_id, user_id, rating, comment)
+VALUES (1, 2, 3.8, 'Enjoyed it.');
+
+INSERT INTO reviews (movie_id, user_id, rating, comment)
+VALUES (2, 1, 4.2, 'Amazing storyline.');
+
+INSERT INTO reviews (movie_id, user_id, rating, comment)
+VALUES (2, 2, 3.5, 'Not bad.');
+
+
+SELECT movies.id, movies.title, movies.release_year, reviews.rating, reviews.comment, users.name AS user_name
+FROM movies
+JOIN reviews ON movies.id = reviews.movie_id
+JOIN users ON reviews.user_id = users.id
+WHERE movies.id = 1;
