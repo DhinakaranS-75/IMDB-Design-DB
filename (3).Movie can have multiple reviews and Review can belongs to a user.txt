@@ -26,7 +26,7 @@ VALUES ('Movie 1', 2022);
 INSERT INTO movies (title, release_year)
 VALUES ('Movie 2', 2023);
 
--- Insert users
+
 INSERT INTO users (name)
 VALUES ('User 1');
 
