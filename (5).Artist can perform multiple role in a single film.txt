@@ -53,3 +53,10 @@ FROM films
 JOIN performances ON films.id = performances.film_id
 JOIN artists ON performances.artist_id = artists.id
 WHERE films.id = 1;
+
+
+Output:
+
+    id	title	release_year	artist_name	role
+    1	Film 1	2022	Artist 1	Lead Actor
+    1	Film 1	2022	Artist 2	Supporting Actor
