@@ -23,7 +23,6 @@ VALUES ('Artist 1');
 INSERT INTO artists (name)
 VALUES ('Artist 2');
 
--- Insert skills
 INSERT INTO skills (name)
 VALUES ('Acting');
 
