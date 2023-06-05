@@ -24,7 +24,7 @@ VALUES ('Movie 1', 2022);
 INSERT INTO movies (title, release_year)
 VALUES ('Movie 2', 2023);
 
--- Insert genres
+
 INSERT INTO genres (name)
 VALUES ('Action');
 
